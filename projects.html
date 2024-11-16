@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaloyan Stefanov</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2em;
+        }
+
+        nav a:hover {
+            color: #f39c12;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin: 0 0.5px;
+            color: #1a1a1a;
+        }
+
+        h3 {
+            margin: 0 0.5px;
+            color: #1a1a1a;
+            font-size: 0.81em;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .video-container {
+            text-align: center;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #1a1a1a;
+            color: #fff;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Kaloyan Stefanov</h1>
+        <p>Exploring Computer Systems, Hardware Design, and Robotics</p>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="#">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main>
+        <h1>My Projects</h1>
+        
+        <div class="project">
+            <h2>kEngine</h2>
+            <h3>11/15/2024</h3>
+            <!-- <img src="path/to/your/image1.jpg" alt="Project Image 1"> -->
+            <div class = 'video-container'>
+                <iframe src="../videos/kengine.mp4" frameborder="0" allowfullscreen></iframe>
+                <p>kEngine: A simple 3D engine written entirely with NumPy and Pygame.</p>
+            </div>
+            <div class="project-description">
+                <p>
+                    Through this project, I developed a simple 3D engine in Python 
+                    that was capable of displaying an arbitrary 3D figure given a 
+                    set of 3D vertex points and faces described. Restrictions existed: 
+                    no easy library implementation or quick solution for mapping 3D 
+                    points to the 2D image plane was allowed, and instead had to be manually
+                    calculated. This was done through the use of coordinate frames (namely 
+                    a camera and world frame), along with a perspective projection matrix. 
+                    Once this was complete, 3D points could successfully be converted to 2D
+                    and displayed. However, rotation was also necessary. To implement this,
+                    I calculated a rotation matrix based on the change in the user's mouse
+                    position. I then applied this matrix repeatedly to the vertex points,
+                    allowing for a consistently updated and rotatable shape. The final piece
+                    of the puzzle was shading each face of the shape, which can be done through
+                    exploiting the geometry of the face. Since each face is composed of three points,
+                    we can create a plane in three dimensions; if we have a plane, we can also
+                    create a normal vector. When considering lighting, we can take the dot product
+                    of this normal vector with the "lighting" vector to determine a lighting score:
+                    after normalization of the two vectors, we have a range from -1 to 1 which can 
+                    determine the shading color we should apply to each face. For this project,
+                    I assumed that this lighting vector would be coming out of the shape and 
+                    towards the camera. Here, another idea must be implemented: if our dot product 
+                    is less than or equal to 0, we have a face that should not be shown. 
+                    To conceptualize this, imagine a face on the back of the object: its normal
+                    would be pointing into the screen (the negative z-axis, in this case), while the 
+                    light vector is point towards the screen (the positive z-axis). It is clear that in this 
+                    case we do not want to shade in the face (as it is not visible to the user), and this is 
+                    exactly when the dot product will be negative. Additionally, the dot product will be 0
+                    when these two vectors are perpendicular: we can see that this is the case when the face 
+                    is orthogonal to the user's view, and thus should also not be shown. After this,
+                    we have a simple 3D engine built entirely with NumPy and Pygame, capable of displaying
+                    an arbitrary shape and shading it in!
+                </p>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Kaloyan Stefanov. All rights reserved.</p>
+    </footer>
+</body>
+</html>
