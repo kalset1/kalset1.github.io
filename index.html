@@ -18,8 +18,9 @@
         header {
             background-color: #1a1a1a;
             color: #fff;
-            padding: 10px 20px;
+            padding: 20px;
             text-align: center;
+            width: 100%;
         }
 
         header h1 {
@@ -27,10 +28,16 @@
             font-size: 2.5em;
         }
 
+        header p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
         nav {
             background: #333;
             padding: 10px;
             text-align: center;
+            width: 100%;
         }
 
         nav a {
@@ -45,36 +52,48 @@
         }
 
         main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2em;
         }
 
-        section {
-            margin-bottom: 30px;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
         }
 
-        h2 {
-            color: #1a1a1a;
+        .project {
+            border: 1px solid #ccc;
+            padding: 1em;
+            border-radius: 8px;
+            background-color: #f9f9f9;
         }
 
-        .content img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 10px auto;
+        .project h3, .project h4 {
+            margin: 0.5em 0;
         }
 
-        .video-container {
+        .media {
             text-align: center;
         }
 
-        .video-container iframe {
+        .media img {
             width: 100%;
-            max-width: 560px;
-            height: 315px;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .media iframe {
+            width: 100%;
+            max-width: 500px;
+            height: 425px;
+            border-radius: 8px;
+        }
+
+        figcaption {
+            margin-top: 0.5em;
+            font-style: italic;
+            color: #555;
         }
 
         footer {
@@ -92,39 +111,44 @@
         <h1>Kaloyan Stefanov</h1>
         <p>Exploring Computer Systems, Hardware Design, and Robotics</p>
     </header>
-
     <nav>
-        <a href="#">Home</a>
+        <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Contact</a>
     </nav>
 
     <main>
-        <section id="about">
+        <section>
             <h2>About Me</h2>
             <p>
-              I'm a third year student in Electrical and Computer Engineering at Carnegie Mellon University,
-              pursuing an additional major in Robotics. I'm excited to learn about computer systems and hardware design,
-              and enjoy applying this knowledge to the realm of robotics. 
+                I'm a third year student in Electrical and Computer Engineering at 
+                Carnegie Mellon University, pursuing an additional major in Robotics. 
+                I'm excited to learn about computer systems and hardware design, and 
+                enjoy applying this knowledge to the realm of robotics. Throughout my time 
+                at CMU, I've worked with the Biorobotics Lab, TA'ed Introduction to Computer
+                Systems (18-213), synthesized and wrote code for FPGAs, programmed Franka Panda robot arms, 
+                and developed an RTOS for an STM32 microcontroller. In my spare time, I enjoy making music, rock climbing, and reading.
             </p>
         </section>
-
-        <section>
-            <h2>Featured Projects</h2>
-            <div style="text-align: center;">
-                <figure>
-                    <img src="images/embedded_rover.jpg" alt="The Embedded Rover: Complete with fully functioning HLP RTOS and PID control." style="width: 100%; max-width: 600px; height: auto;">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project">
+                <h3>Embedded Rover (18-349 Project)</h3>
+                <h4>12/11/2024</h4>
+                <div class="media">
+                    <img src="images/embedded_rover.jpg" alt="The Embedded Rover: Complete with fully functioning HLP RTOS and PID control.">
                     <figcaption>The Embedded Rover: Complete with fully functioning HLP RTOS and PID control.</figcaption>
-                </figure>
+                </div>
             </div>
-            <!-- <div class="content">
-                <img src="../images/kengine_shaded.png" alt="Project Image">
-            </div> -->
-            <div class="video-container">
-              <iframe src="../videos/kengine.mp4" frameborder="0" allowfullscreen></iframe>
-              <p>kEngine: A simple 3D engine written entirely with NumPy and Pygame.</p>
-          </div>
-        </section>
+            <div class="project">
+                <h3>kEngine</h3>
+                <h4>11/15/2024</h4>
+                <div class="media">
+                    <iframe src="../videos/kengine.mp4" frameborder="0" allowfullscreen></iframe>
+                    <figcaption>kEngine: A simple 3D engine written entirely with NumPy and Pygame.</figcaption>
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer>
