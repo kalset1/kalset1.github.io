@@ -112,10 +112,81 @@
     </nav>
     <main>
         <h1>My Projects</h1>
+
+        <div class="project">
+            <h2>C0 Compiler (15-411 Project)</h2>
+            <h3>Spring 2025</h3>
+            <div style="text-align: center;">
+                <img src="images/randallboggs.jpeg" alt="Randall boggs, our team name and mascot for the compiler (everyone had to pick a disney character)." style="width: 100%; max-width: 600px; height: auto;">
+                <figcaption>Randall boggs, our team name and mascot for the compiler (everyone had to pick a disney character).</figcaption>
+            </div>
+            <div class="project-description">
+                <p>
+                    During my time in Carnegie Mellon's compiler design course (15-411), my partner and I built a compiler for C0 from the ground up.
+                    Our final compiler supports the C0 language, including conditionals, loops, functions, and memory operations. 
+                    It goes through a couple of different phases: initially, our source code gets parsed and converted into an AST. This 
+                    was done using the Rust library lalrpop. This gave us some headaches, mainly from triyng to write our rules to align with
+                    the grammar specified in C0, which was eventually NOT context free. We then generate an elaborated AST, to simplify the possible
+                    statements for later passes. In our next stage we typecheck the elaborated AST, ensuring that the program is behaving properly.
+                    This is done through converting a set of judgements and rules for how the program should behave into iterative passes through
+                    our elaborated AST. Once the program typechecks successfully, an intermediate representation is generated and tail-call recursion is identified and inserted. 
+                    Internally, we call this the "forest" representation, since we take in our elaborated AST and recursively generate commands (preserving side effects) 
+                    by traversing the tree. After our forest representation, we know what the sizes of these variables will be in the final assembly,
+                    and thus can interpolate the sizes for our entire IR. Once these sizes are generated, we create our abstract assembly. While the forest 
+                    representation still had variables, our abstract assembly operates only on temporaries. After this conversion, we convert the abstract
+                    assembly to SSA and run a series of optimizations on this new SSA form: peephole optimizations (such as t0 = t1 * 1 -> t0 = t1), sparse
+                    constant and copy propagation, aggressive dead code elimination, and strength reductions. We then convert back out of SSA, by inserting parallel copies
+                    for any phi moves (a special kind of move instruction necessary in SSA to deal with control flow) and then removing the phi instructions from our abstract assembly. 
+                    We then add in hard registers (since we targeting x86-64) for specific instructions, such as IDIV, so that our final assembly code will behave correctly.
+                    Finally, we convert our abstract assembly to x86-64 assembly, taking special care to remove unnecessary instructions and perform efficient operations.
+
+                    <br>
+                    <br>
+
+                    Some reflection: this was by far the hardest project I've ever done at CMU. As any of my friends can verify,
+                    almost everyday I was locked up in my room, Gates, or some other unknown area working on this compiler. I wrote 
+                    11,000+ lines of Rust code, with my only previous experience being the beginner project in the Book. With that said,
+                    it is by far my favorite class I've ever taken at CMU. To work on a project continously over the semester was the most rewarding
+                    experience I've had yet, and learning more about the Rust language as I built the compiler was awesome. The all-nighters were 
+                    slightly diabolical but I would do it all over again if I could :) 
+                </p>
+            </div>
+        </div>
+
+        <h2>RISC-V Pipelined Processor (18-447 Project)</h2>
+            <h3>Spring 2025</h3>
+            <div style="text-align: center;">
+                <img src="images/riscv.png" alt="RISC-V, the ISA we targeted with our CPU" style="width: 100%; max-width: 600px; height: auto;">
+                <figcaption>RISC-V, the ISA we targeted with our CPU</figcaption>
+            </div>
+            <div class="project-description">
+                <p>
+                    In Introduction to Computer Architecture (18-447), my team and I designed and developed a synthesizable
+                    6-stage pipelined RISC-V processor in SystemVerilog. From an initial RTL specification of a single-cycle processor
+                    to a processor with branch prediction, data forwarding, stalling, and a data cache with prefetching, our team built the processor
+                    from the ground up in a single semester. After the initial single-cycle implementation, we continued to add features 
+                    to improve our processors's efficiency, with the techniques we learned about in class. Four our final lab, our class
+                    had a competition based on MIPS and Area/Power. In this competition, my team and I achieved a throughput of 
+                    263 MIPS on a variety of C-language benchmark tests, testing our processors's ability on large programs
+                    with significant control-flow and memory operations. Throughout my time with this project, I also attended
+                    the Superscalar club, a class gathering which would meet on Friday to go over how more advanced CPUs function,
+                    with features like out-of-order processing of instructions and what it meant for a processor to be "superscalar". 
+
+                    <br>
+                    <br>
+                    
+                    Learning more about computer architecture and the choices that people had to make when designing
+                    processors connected the picture for me. It was the bridge between software and hardware that I had
+                    always been most interested in, and taking a course on compilers gave me an even deeper
+                    understanding for how software and hardware can interact on the stack, along with how the design choices
+                    of computer architects can influence this entire procedure. 
+                </p>
+            </div>
+        </div>
         
         <div class="project">
             <h2>Embedded Rover (18-349 Project)</h2>
-            <h3>12/11/2024</h3>
+            <h3>Fall 2024</h3>
             <div style="text-align: center;">
                 <img src="images/embedded_rover.jpg" alt="The Embedded Rover: Complete with fully functioning HLP RTOS and PID control." style="width: 100%; max-width: 600px; height: auto;">
                 <figcaption>The Embedded Rover: Complete with fully functioning HLP RTOS and PID control.</figcaption>
@@ -141,7 +212,7 @@
 
         <div class="project">
             <h2>kEngine</h2>
-            <h3>11/15/2024</h3>
+            <h3>November 2024</h3>
             <!-- <img src="path/to/your/image1.jpg" alt="Project Image 1"> -->
             <div class = 'video-container'>
                 <iframe src="../videos/kengine.mp4" frameborder="0" allowfullscreen></iframe>
